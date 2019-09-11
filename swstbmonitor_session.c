@@ -85,6 +85,11 @@ int sw_stbmonitor_sleep(bool sleep)
 	return 0;
 }
 
+bool sw_stbmonitor_session_is_create(void)
+{
+	    return m_session_is_create;
+}
+
 //只支持一个session
 int sw_stbmonitor_create_session(int socket, sw_stbmonitor_callback_funcs_t *cbfs, int type)
 {

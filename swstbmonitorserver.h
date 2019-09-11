@@ -37,103 +37,28 @@ extern "C" {
 #define	STBMONITOR_LOG_LEVEL_FATAL		0x05	//指出每个严重的错误事件将会导致应用程序的退出
 #define	STBMONITOR_LOG_LEVEL_OFF		0x06	//关闭日志输出
 
-typedef void func_callback_log_output( int level, const char* mod, const char* file, int line, const char *logbuf );
-
-typedef int func_callback_on_read_all_parameter( char *buf, int size );
-typedef int func_callback_on_read_parameter( char *name, char*value, int size);
-typedef int func_callback_on_read_channellist( char *buf, int size );
-typedef int func_callback_on_write_parameter( char *name, char*value, int save );
-
-typedef int func_callback_on_upgrade_data( unsigned char *buf, int size, int total_size, bool force );
-typedef int func_callback_on_upgrade_error();
-typedef int func_callback_on_upgrade_end();
-typedef int func_callback_on_upgrade_online();
-
-typedef int func_callback_on_stb_reboot();
-typedef int func_callback_on_restore_setting();
-
-typedef int func_callback_on_set_test_mode();
-typedef int func_callback_on_set_autotest_mode();
-typedef int func_callback_on_set_work_mode();
-typedef int func_callback_on_set_scriptrecord_mode();
-
-
-typedef int func_callback_on_set_log_out_type( char *type );
 typedef int func_callback_on_set_log_level( char *level );
 typedef int func_callback_on_set_log_type( char *type );
-
-typedef int func_callback_on_media_play( char *mrl );
-typedef int func_callback_on_media_pause();
-typedef int func_callback_on_media_stop();
-typedef int func_callback_on_media_ffwd();
-typedef int func_callback_on_media_fbwd();
-
-typedef int func_callback_on_sftp_write_nonblock(int argc, char *ip, char *servername, char *serverpswd, char *localpath, char *remotepath, char *type, int *uploadsize);
-
-typedef int func_callback_on_syscmd(const char* cmd );
-
-//typedef int func_callback_on_ping(const char* srmping );
-//typedef int func_callback_on_traceroute(const char* hostip );
-typedef int func_callback_on_ping(char* result,char* srmping );
-typedef int func_callback_on_traceroute(char* result, char* hostip );
-
-typedef int func_callback_on_startBootDebugInfo();
-typedef int func_callback_on_stopBootDebugInfo(char *url);
-typedef int func_callback_on_uploadBootDebugInfo(char *url);
-
-typedef int func_callback_on_startDebugInfo();
-typedef int func_callback_on_stopDebugInfo(char *url);
-typedef int func_callback_on_uploadDebugInfo();
-typedef int func_callback_on_startChannelZapping();
-typedef int func_callback_on_stopChannelZapping();
-typedef int func_callback_on_startPipSwapping();
-typedef int func_callback_on_stopPipSwapping();
-typedef int func_callback_on_startStability();
-typedef int func_callback_on_stopStability();
-typedef int func_callback_on_fileSend();
+typedef int func_callback_on_set_log_out_type( char *type );
+typedef int func_callback_on_read_parameter( char *name, char*value, int size);
+typedef int func_callback_on_write_parameter( char *name, char*value, int save );
+typedef int func_callback_on_stb_reboot(void);
+typedef int func_callback_on_restore_setting(void);
+typedef int func_callback_close_remote_connect(void);
 
 typedef struct _sw_stbmonitor_callback_funs
 {
-	func_callback_on_startBootDebugInfo* fcb_on_startBootDebugInfo;
-	func_callback_on_stopBootDebugInfo* fcb_on_stopBootDebugInfo;
-	func_callback_on_uploadBootDebugInfo* fcb_on_uploadBootDebugInfo;
-	func_callback_log_output* fcb_log_output;
-	func_callback_on_read_all_parameter* fcb_on_read_all_parameter;
-	func_callback_on_read_parameter* fcb_on_read_parameter;
-	func_callback_on_read_channellist* fcb_on_read_channellist;
-	func_callback_on_write_parameter* fcb_on_write_parameter;
-	func_callback_on_upgrade_data* fcb_on_upgrade_data;
-	func_callback_on_upgrade_error* fcb_on_upgrade_error;
-	func_callback_on_upgrade_end* fcb_on_upgrade_end;
-	func_callback_on_stb_reboot* fcb_on_stb_reboot;
-	func_callback_on_restore_setting* fcb_on_restore_setting;
-	func_callback_on_set_test_mode* fcb_on_set_test_mode;
-	func_callback_on_set_autotest_mode*	fcb_on_set_autotest_mode;
-	func_callback_on_set_work_mode* fcb_on_set_work_mode;
-	func_callback_on_set_scriptrecord_mode* fcb_on_set_scriptrecord_mode;
-	func_callback_on_upgrade_online* fcb_on_upgrade_online;
-	func_callback_on_set_log_out_type* fcb_on_set_log_out_type;
 	func_callback_on_set_log_level* fcb_on_set_log_level;
 	func_callback_on_set_log_type* fcb_on_set_log_type;
-	func_callback_on_media_play* fcb_on_media_play;
-	func_callback_on_media_pause* fcb_on_media_pause;
-	func_callback_on_media_stop* fcb_on_media_stop;
-	func_callback_on_media_ffwd* fcb_on_media_ffwd;
-	func_callback_on_media_fbwd* fcb_on_media_fbwd;
-	func_callback_on_sftp_write_nonblock* fcb_on_sftp_write_noblock;
-	func_callback_on_syscmd* fcb_on_syscmd;
-	func_callback_on_ping* fcb_on_ping;
-	func_callback_on_traceroute* fcb_on_traceroute;
-	func_callback_on_startDebugInfo* fcb_on_startDebugInfo;
-	func_callback_on_stopDebugInfo* fcb_on_stopDebugInfo;
-	func_callback_on_uploadDebugInfo* fcb_on_uploadDebugInfo;
-	func_callback_on_startChannelZapping* fcb_on_startChannelZapping;
-	func_callback_on_stopChannelZapping* fcb_on_stopChannelZapping;
-	func_callback_on_startPipSwapping* fcb_on_startPipSwapping;
-	func_callback_on_stopPipSwapping* fcb_on_stopPipSwapping;
-	func_callback_on_startStability* fcb_on_startStability;
-	func_callback_on_stopStability* fcb_on_stopStability;
-	func_callback_on_fileSend* fcb_on_fileSend;
+	func_callback_on_set_log_out_type* fcb_on_set_log_out_type;
+	
+	func_callback_on_read_parameter* fcb_on_read_parameter;
+	func_callback_on_write_parameter* fcb_on_write_parameter;
+	
+	func_callback_on_restore_setting* fcb_on_restore_setting;
+	func_callback_on_stb_reboot* fcb_on_stb_reboot;
+	func_callback_close_remote_connect *fcb_on_stb_close_remote_connect;
+
 }sw_stbmonitor_callback_funcs_t;
 
 int sw_stbmonitor_server_init(sw_stbmonitor_callback_funcs_t *cbfs);
