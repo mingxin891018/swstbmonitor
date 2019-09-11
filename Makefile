@@ -36,6 +36,16 @@ DYN_LDS_WITH += -L$(SWMODULESROOT)/pub/libs/$(SW_PLATFORM) -lswsysclient \
 				-L$(SWPARTSROOT)/pub/libs/$(SW_PLATFORM)/freetype-2.8.1 -lfreetype \
 				-L$(SWAPIROOT)/pub/network/libs/$(SW_PLATFORM) -ldhcpc -lswnetwork -lswnetutil
 
+DYN_LDS_WITH+= -L$(SWAPIROOT)/pub/platform/libs/$(SW_PLATFORM)/sdk \
+			   -lrtstream \
+			   -lrtsvideo \
+			   -lrtsaudio \
+			   -lrtsaec \
+			   -lrtsaec_chn \
+			   -laacenc \
+			   -lasound \
+			   -lrtsio
+
 
 ifeq ($(SUPPORT_OPENSSL),y)
 INCDIR += -I$(SWPARTSROOT)/pub/include/$(OPENSSL_VER)/

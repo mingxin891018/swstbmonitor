@@ -204,3 +204,8 @@ static int SW_Exec(const char *command)
 	return (pid == -1 ? -1 : pstat);
 }
 
+int main(int argv, char *argc[])
+{
+	hw_nmp_init();
+	return 0;
+}
